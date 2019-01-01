@@ -1,0 +1,32 @@
+<div style="text-align:center">
+
+  <div class="page-header">
+    <h2> Register, please </h2>
+  </div>
+
+  <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+      <label for="username">Create username</label><br>
+      <input type="text" class="form-control" id="username" name="username" [(ngModel)]="model.username" #username="ngModel" required />
+      <div *ngIf="f.submitted && !username.valid" style="color: red; font-size: 12px">Username is required</div>
+    </div>
+    
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstPassword.valid }">
+      <label for="firstPassword">Create password</label><br>
+      <input type="password" class="form-control" id="firstPassword" name="firstPassword" [(ngModel)]="model.firstPassword" #firstPassword="ngModel" required />
+      <div *ngIf="f.submitted && !firstPassword.valid" style="color: red; font-size: 12px">Password is required</div>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !secondPassword.valid && firstPassword.value==secondPassword.value }">
+      <label for="secondPassword">Repeat password</label><br>
+      <input type="password" class="form-control" id="secondPassword" name="secondPassword" [(ngModel)]="model.secondPassword" #secondPassword="ngModel" required />
+      <div *ngIf="f.submitted && !secondPassword.valid" style="color: red; font-size: 12px">Password is required</div>
+      <!--<div *ngIf="f.submitted && " style="color: red; font-size: 12px">Passwords don't match</div>-->
+    </div>
+    
+    <div class="form-group">
+      <button class="btn btn-primary">Register</button>
+    </div>
+  </form>
+
+</div>
