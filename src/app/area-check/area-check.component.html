@@ -1,0 +1,36 @@
+<table align="center">
+  <tr>
+    <td>
+      <form name="areaCheckFrom" (ngSubmit)="f.form.valid && check()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !x.valid }">
+          <span class="ui-float-label">
+            <input type="text" id="x" name="x" [(ngModel)]="model.x" #x="ngModel" pInputText required>
+            <label for="x">Coordinate X</label>
+          </span>
+          <div *ngIf="f.submitted && !x.valid" style="color: red; font-size: 12px">X is required</div>
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="y">Coordinate Y: {{yVal}}</label>
+          <p-slider id="y" [min]="-5" [max]="5" [(ngModel)]="yVal" [style]="{'width':'14em'}" (onChange)="handleChangeY($event)"></p-slider>
+        </div>
+        <br>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !r.valid }">
+          <span class="ui-float-label">
+            <input type="text" id="r" name="r" [(ngModel)]="model.r" #r="ngModel" pInputText required>
+            <label for="r">Radius R</label>
+          </span>
+          <div *ngIf="f.submitted && !r.valid" style="color: red; font-size: 12px">R is required</div>
+        </div>
+        <br>
+        <div class="form-group">
+          <button class="btn btn-primary">Check</button>
+        </div>
+      </form>
+    </td>
+    <td>
+
+    </td>
+  </tr>
+</table>
+

@@ -1,3 +1,6 @@
+@import '~primeng/resources/themes/bootstrap/theme.css';
+@import '~primeng/resources/primeng.min.css';
+
 h1 {
   color: #369;
   font-family: Arial, Helvetica, sans-serif;
