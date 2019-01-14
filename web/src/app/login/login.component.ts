@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ajax} from 'rxjs/ajax';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,13 @@ export class LoginComponent {
   constructor() {}
 
   login() {
-    this.loginError = true;
-    // alert(this.model.username + ' ' + this.model.password);
+    ajax({
+      url: 'http://localhost:8080/app/commands/auth/login',
+      method: 'POST',
+      body: {login: this.model.username, password: this.model.password}
+    }).subscribe(
+       data => alert('data! ' + data.status),
+       error => alert('error!')
+       );
   }
 }
