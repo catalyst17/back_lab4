@@ -1,0 +1,49 @@
+<div style="text-align:center">
+
+  <div class="page-header">
+    <h2> Register </h2>
+  </div>
+
+  <table align="center">
+    <tr>
+      <td>
+        <form name="registerForm" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+          <div [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <span class="ui-float-label">
+              <input type="text" id="username" name="username" [(ngModel)]="model.username" #username="ngModel" pInputText required>
+              <label for="username">Username</label>
+            </span>
+            <div *ngIf="f.submitted && !username.valid" style="color: red; font-size: 12px">Username is required</div>
+          </div>
+          <br>
+
+          <div [ngClass]="{ 'has-error': f.submitted && !firstPassword.valid }">
+            <span class="ui-float-label">
+              <input type="password" id="firstPassword" name="firstPassword" [(ngModel)]="model.firstPassword" #firstPassword="ngModel" pInputText required>
+              <label for="firstPassword">Create password</label>
+            </span>
+            <div *ngIf="f.submitted && !firstPassword.valid" style="color: red; font-size: 12px">Password is required</div>
+          </div>
+          <br>
+
+          <div [ngClass]="{ 'has-error': f.submitted && !secondPassword.valid }">
+            <span class="ui-float-label">
+              <input type="password" class="form-control" id="secondPassword" name="secondPassword" [(ngModel)]="model.secondPassword" #secondPassword="ngModel" pInputText required>
+              <label for="secondPassword">Repeat password</label>
+            </span>
+            <div *ngIf="f.submitted && !secondPassword.valid" style="color: red; font-size: 12px">Password is required</div>
+          </div>
+          <br>
+
+          <div align="center">
+            <p-button label="Register"></p-button>
+          </div>
+        </form>
+      </td>
+    </tr>
+    <tr>
+      <br><div class="registerAlert" *ngIf="!doMatch">Passwords don't match</div>
+    </tr>
+  </table>
+
+</div>
