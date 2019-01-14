@@ -1,0 +1,40 @@
+<div style="text-align:center">
+
+  <div class="page-header">
+    <h2> Login </h2>
+  </div>
+
+  <table align="center">
+    <tr>
+      <td>
+        <form name="loginForm" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+          <div [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <span class="ui-float-label">
+              <input type="text" id="username" name="username" [(ngModel)]="model.username" #username="ngModel" pInputText required>
+              <label for="username">Username</label>
+            </span>
+            <div *ngIf="f.submitted && !username.valid" style="color: red; font-size: 12px">Username is required</div>
+          </div>
+          <br>
+
+          <div [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <span class="ui-float-label">
+              <input type="password" id="password" name="password" [(ngModel)]="model.password" #password="ngModel" pInputText required>
+              <label for="password">Password</label>
+            </span>
+            <div *ngIf="f.submitted && !password.valid" style="color: red; font-size: 12px">Password is required</div>
+          </div>
+          <br>
+
+          <div align="center">
+            <p-button label="Login"></p-button>
+          </div>
+        </form>
+      </td>
+    </tr>
+    <tr>
+      <br><div class="loginAlert" *ngIf="loginError">Login or password is incorrect</div>
+    </tr>
+  </table>
+
+</div>

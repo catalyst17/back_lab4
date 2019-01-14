@@ -1,0 +1,42 @@
+<table align="center">
+  <tr>
+    <td>
+      <form name="areaCheckFrom" (ngSubmit)="f.form.valid && addPointByForm()" #f="ngForm" novalidate>
+        <div [ngClass]="{ 'has-error': f.submitted && !x.valid }">
+          <span class="ui-float-label">
+            <input type="text" id="x" name="x" [(ngModel)]="xVal" #x="ngModel" pInputText required>
+            <label for="x">Coordinate X∈(-3; 3)</label>
+          </span>
+          <div *ngIf="f.submitted && !x.valid" style="color: red; font-size: 12px">X is required</div>
+          <div *ngIf="invalidX" style="color: red; font-size: 12px">X must be in range (-3; 3)</div>
+        </div>
+        <br>
+        <div>
+          <label for="y">Coordinate Y: {{yVal}}</label>
+          <p-slider id="y" [min]="-5" [max]="5" [(ngModel)]="yVal" [style]="{'width':'14em'}" [ngModelOptions]="{standalone: true}" (onChange)="handleChangeY($event)"></p-slider>
+        </div>
+        <br>
+        <div [ngClass]="{ 'has-error': f.submitted && !r.valid }">
+          <span class="ui-float-label">
+            <input type="text" id="r" name="r" [(ngModel)]="rVal" #r="ngModel" pInputText required>
+            <label for="r">Radius R∈(-3; 3)</label>
+          </span>
+          <div *ngIf="f.submitted && !r.valid" style="color: red; font-size: 12px">R is required</div>
+          <div *ngIf="invalidR" style="color: red; font-size: 12px">R must be in range (-3; 3)</div>
+        </div>
+        <br>
+        <div align="center">
+          <p-button label="Check"></p-button>
+        </div>
+      </form>
+    </td>
+    <td>
+      <br *ngIf="triedToClickWithoutFormRadius==false">
+      <div *ngIf="triedToClickWithoutFormRadius==true" style="color: red; font-size: 14px; text-align: center">Form is not submitted yet</div>
+      <div>
+        <canvas #myCanvas width="500" height="500" style="background:white;" on-click="addPointByCanvas($event)"></canvas>
+      </div>
+    </td>
+  </tr>
+</table>
+
